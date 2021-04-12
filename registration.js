@@ -1,4 +1,9 @@
-import { auth, email, password, registerBtn } from "./firebase.js";
+import { auth } from "./firebase.js";
+
+let email = document.getElementById('email');
+let password = document.getElementById('password');
+let registerBtn = document.getElementById('registerBtn');
+let statusBox = document.getElementById('status').firstElementChild;
 
 registerBtn.addEventListener('click', registerUser);
 
@@ -10,7 +15,7 @@ function registerUser(e) {
         .then((userCredential) => {
             // Signed in
             let user = userCredential.user;
-            console.log(user);
+            statusBox.innerHTML = `Welcome, ${user.email}`;
         })
         .catch((error) => {
             let errorCode = error.code;

@@ -14,8 +14,4 @@ firebase.initializeApp(firebaseConfig);
 let auth = firebase.auth();
 let baseURI = "https://blog-a13c9-default-rtdb.firebaseio.com/";
 
-let email = document.getElementById('email');
-let password = document.getElementById('password');
-let registerBtn = document.getElementById('registerBtn');
-
-export {auth, email, password, registerBtn}
+export {auth, baseURI}
