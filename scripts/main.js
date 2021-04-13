@@ -1,20 +1,24 @@
 import { auth, baseURI } from "./firebase.js";
 
-let loginBtn = document.getElementById('showLogin');
+let body = document.getElementsByTagName('body')[0];
+
 let formBox = document.getElementById('registration');
 let email = document.getElementById('email');
 let password = document.getElementById('password');
-let registerBtn = document.getElementById('registerBtn');
 
 let statusBox = document.getElementById('status').firstElementChild;
 // let postForm = document.getElementById('postForm');
 let allPosts = document.getElementById('allPosts');
-let postButton = document.getElementById('postButton');
 let postTemplate = Handlebars.compile(document.getElementById('postTemplate').innerHTML);
+
+let loginBtn = document.getElementById('showLogin');
+let registerBtn = document.getElementById('registerBtn');
+let postButton = document.getElementById('postButton');
 
 registerBtn.addEventListener('click', registerUser);
 loginBtn.addEventListener('click', changeForm);
 postButton.addEventListener('click', createPost);
+body.addEventListener('click', deletePost);
 
 function registerUser() {
     let userEmail = email.value;
@@ -80,7 +84,7 @@ function loadPosts(user, base) {
     fetch(`${base}users/${user.uid}/posts.json`)
         .then(res => res.json())
         .then(data => {
-            allPosts.innerHTML = Object.keys(data).map(key => postTemplate(data[key])).join('');
+            allPosts.innerHTML = Object.keys(data).map(key => postTemplate(data[key]) + `<button value="${key}">Delete</button>`).join('');
         })
 }
 
@@ -105,5 +109,18 @@ function createPost() {
         }
      } else {
         console.log('Need to be signed in.');
+    }
+}
+
+function deletePost(event) {
+    if(event.target.nodeName === "BUTTON" && event.target.value !== "") {
+        let currentUser = auth.currentUser;
+        if (currentUser) {
+            fetch(`${baseURI}users/${currentUser.uid}/posts/${event.target.value}.json`, {
+                method: "DELETE",
+                headers: {'Content-type': 'application/json'}
+            });
+            loadPosts(currentUser, baseURI);
+        }
     }
 }
