@@ -28,24 +28,21 @@
     <button type="button" id="postButton">Post</button>
 </form>
 
-
 <div id="status">
     <h1>Please register</h1>
 </div>
 
-<div id="posts"></div>
+<div id="allPosts"></div>
 
 <script type="text/x-handlebars-template" id="postTemplate">
-    {{#each posts}}
-        <div class="post-container">
+        <div>
             <h2>{{title}}</h2>
             <article>{{content}}</article>
             <p>{{author}}</p>
         </div>
-    {{/each}}
 </script>
+
 <script src="scripts/firebase.js"></script>
 <script type="module" src="scripts/main.js"></script>
-
 </body>
 </html>

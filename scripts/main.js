@@ -7,8 +7,8 @@ let password = document.getElementById('password');
 let registerBtn = document.getElementById('registerBtn');
 
 let statusBox = document.getElementById('status').firstElementChild;
-let postForm = document.getElementById('postForm');
-let allPosts = document.getElementById('posts');
+// let postForm = document.getElementById('postForm');
+let allPosts = document.getElementById('allPosts');
 let postButton = document.getElementById('postButton');
 let postTemplate = Handlebars.compile(document.getElementById('postTemplate').innerHTML);
 
@@ -16,7 +16,7 @@ registerBtn.addEventListener('click', registerUser);
 loginBtn.addEventListener('click', changeForm);
 postButton.addEventListener('click', createPost);
 
-function registerUser(e) {
+function registerUser() {
     let userEmail = email.value;
     let userPassword = password.value;
 
@@ -25,7 +25,7 @@ function registerUser(e) {
             // Signed in
             let user = userCredential.user;
             formBox.style.display = 'none';
-            statusBox.innerHTML = `Welcome, ${user.email}`;
+            statusBox.style.display = 'none';
             let userData = {
                 uid: user.uid,
                 email: user.email
@@ -56,6 +56,7 @@ function changeForm() {
                 let user = userCredential.user;
                 // showPostForm();
                 formBox.style.display = "none";
+                statusBox.style.display = 'none';
                 loadPosts(user, baseURI);
             })
             .catch((error) => {
@@ -71,16 +72,15 @@ function writeUserData(user) {
     });
 }
 
-function showPostForm() {
-
-}
+// function showPostForm() {
+//
+// }
 
 function loadPosts(user, base) {
     fetch(`${base}users/${user.uid}/posts.json`)
         .then(res => res.json())
         .then(data => {
-            // allPosts.innerHTML = postTemplate({data});
-            console.log(postTemplate({data}));
+            allPosts.innerHTML = Object.keys(data).map(key => postTemplate(data[key])).join('');
         })
 }
 
