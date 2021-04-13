@@ -7,6 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
 </head>
 <body>
 <form id="registration">
@@ -18,13 +19,33 @@
     <button type="button" id="showLogin">Already have an account?</button>
 </form>
 
+
+<form id="postForm" style="display: block; position: fixed">
+    <label for="postTitle">Title:</label>
+    <input type="text" id="postTitle" placeholder="Title">
+    <label for="postContent">Content:</label>
+    <input type="text" id="postContent" placeholder="Content">
+    <button type="button" id="postButton">Post</button>
+</form>
+
+
 <div id="status">
     <h1>Please register</h1>
 </div>
 
+<div id="posts"></div>
+
+<script type="text/x-handlebars-template" id="postTemplate">
+    {{#each posts}}
+        <div class="post-container">
+            <h2>{{title}}</h2>
+            <article>{{content}}</article>
+            <p>{{author}}</p>
+        </div>
+    {{/each}}
+</script>
 <script src="scripts/firebase.js"></script>
-<script type="module" src="scripts/registration.js"></script>
-<script type="module" src="scripts/login.js"></script>
+<script type="module" src="scripts/main.js"></script>
 
 </body>
 </html>
