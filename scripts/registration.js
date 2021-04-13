@@ -1,5 +1,6 @@
-import { auth } from "./firebase.js";
+import { auth, baseURI } from "./firebase.js";
 
+let formBox = document.getElementById('registration');
 let email = document.getElementById('email');
 let password = document.getElementById('password');
 let registerBtn = document.getElementById('registerBtn');
@@ -15,7 +16,14 @@ function registerUser(e) {
         .then((userCredential) => {
             // Signed in
             let user = userCredential.user;
+            formBox.style.display = 'none';
             statusBox.innerHTML = `Welcome, ${user.email}`;
+            let userData = {
+                uid: user.uid,
+                email: user.email
+            }
+
+            writeUserData(userData);
         })
         .catch((error) => {
             let errorCode = error.code;
@@ -23,4 +31,10 @@ function registerUser(e) {
             console.log(errorCode);
             console.log(errorMessage);
         });
+}
+
+function writeUserData(user) {
+    firebase.database().ref('users/' + user.uid).set(user).catch(error => {
+        console.log(error.message)
+    });
 }
