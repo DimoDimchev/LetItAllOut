@@ -36,7 +36,7 @@ function registerUser() {
             }
             writeUserData(userData);
             // showPostForm();
-            loadPosts(user, baseURI);
+            loadUserPosts(user, baseURI);
         })
         .catch((error) => {
             let errorCode = error.code;
@@ -61,7 +61,7 @@ function changeForm() {
                 // showPostForm();
                 formBox.style.display = "none";
                 statusBox.style.display = 'none';
-                loadPosts(user, baseURI);
+                loadUserPosts(user, baseURI);
             })
             .catch((error) => {
                 let errorCode = error.code;
@@ -80,7 +80,7 @@ function writeUserData(user) {
 //
 // }
 
-function loadPosts(user, base) {
+function loadUserPosts(user, base) {
     fetch(`${base}users/${user.uid}/posts.json`)
         .then(res => res.json())
         .then(data => {
@@ -107,7 +107,10 @@ function createPost() {
                     title: title,
                     content: content
                 })
-            }).then(r => loadPosts(currentUser, baseURI))
+            }).then(r => {
+                clearFields();
+                loadUserPosts(currentUser, baseURI);
+            })
         } else {
             console.log('Fields need to be filled.');
         }
@@ -117,14 +120,22 @@ function createPost() {
 }
 
 function deletePost(event) {
+    let currentUser = auth.currentUser;
     if(event.target.nodeName === "BUTTON" && event.target.value !== "") {
-        let currentUser = auth.currentUser;
-        if (currentUser) {
+        if (currentUser !== null) {
             fetch(`${baseURI}users/${currentUser.uid}/posts/${event.target.value}.json`, {
                 method: "DELETE",
                 headers: {'Content-type': 'application/json'}
-            });
-            loadPosts(currentUser, baseURI);
+            }).then(r => loadUserPosts(currentUser, baseURI));
         }
     }
+}
+
+function loadAllPosts(base) {
+
+}
+
+function clearFields() {
+    document.getElementById('postTitle').value = "";
+    document.getElementById('postContent').value = "";
 }
