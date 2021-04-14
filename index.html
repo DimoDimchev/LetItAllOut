@@ -8,31 +8,47 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-database.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<form id="registration">
-    <label for="email">Email</label>
-    <input type="text" id="email" placeholder="Email">
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="Password">
-    <button type="button" id="registerBtn">Register</button>
-    <button type="button" id="showLogin">Already have an account?</button>
-</form>
 
-
-<form id="postForm" style="display: none">
-    <label for="postTitle">Title:</label>
-    <input type="text" id="postTitle" placeholder="Title">
-    <label for="postContent">Content:</label>
-    <input type="text" id="postContent" placeholder="Content">
-    <button type="button" id="postButton">Post</button>
-</form>
-
-<div id="status">
-    <h1>Please register</h1>
+<div id="postFormHolder">
+    <form id="postForm" style="display: none">
+        <label for="postTitle">Title:</label>
+        <input type="text" id="postTitle" placeholder="Title">
+        <label for="postContent">Content:</label>
+        <input type="text" id="postContent" placeholder="Content">
+        <button type="button" id="postButton">Post</button>
+    </form>
 </div>
 
-<div id="allPosts"></div>
+<div>
+<!--    <div class="curved upper">-->
+<!--        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319">-->
+<!--            <path fill="#7fffd4" fill-opacity="1" d="M0,160L30,144C60,128,120,96,180,74.7C240,53,300,43,360,42.7C420,43,480,53,540,85.3C600,117,660,171,720,170.7C780,171,840,117,900,90.7C960,64,1020,64,1080,64C1140,64,1200,64,1260,53.3C1320,43,1380,21,1410,10.7L1440,0L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>-->
+<!--        </svg>-->
+<!--    </div>-->
+    <div class="curved">
+        <div id="content">
+            <div id="landingPageStuff" style="display: block">
+                <h1>Welcome to LetItAllOut</h1>
+                <p>Ever had a bad day at work and wanted to tell someone how lazy your coworkers are? Was there a secret that that you wanted to share with someone very badly, but you couldn't trust anyone? The best person to keep your secrets is, well, YOU. </p>
+                <button id="registrationPrompt">Try it now!</button>
+            </div>
+
+            <div id="registrationFormHolder">
+                <form id="registration" style="display:none;">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Email">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password">
+                    <button type="button" id="registerBtn">Register</button>
+                    <button type="button" id="showLogin">Already have an account?</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/x-handlebars-template" id="postTemplate">
         <div>

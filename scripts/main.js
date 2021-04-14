@@ -8,8 +8,9 @@ let email = document.getElementById('email');
 let password = document.getElementById('password');
 
 // Divs that hold content
-let statusBox = document.getElementById('status').firstElementChild;
-let allPosts = document.getElementById('allPosts');
+let registrationFormHolder = document.getElementById('registrationFormHolder');
+let postFormHolder = document.getElementById('postFormHolder');
+let content = document.getElementById('content');
 
 // The template, which is later applied to every post
 let postTemplate = Handlebars.compile(document.getElementById('postTemplate').innerHTML);
@@ -21,10 +22,12 @@ let postForm = document.getElementById('postForm');
 let loginBtn = document.getElementById('showLogin');
 let registerBtn = document.getElementById('registerBtn');
 let postButton = document.getElementById('postButton');
+let registrationPromptButton = document.getElementById('registrationPrompt');
 
 registerBtn.addEventListener('click', registerUser);
 loginBtn.addEventListener('click', changeForm);
 postButton.addEventListener('click', createPost);
+registrationPromptButton.addEventListener('click', showRegistrationForm);
 
 // Attatching deletePost() function to "Delete" buttons using event bubbling
 body.addEventListener('click', deletePost);
@@ -40,7 +43,6 @@ function registerUser() {
             // Signed in
             let user = userCredential.user;
             formBox.style.display = 'none';
-            statusBox.style.display = 'none';
             let userData = {
                 uid: user.uid,
                 email: user.email
@@ -58,7 +60,6 @@ function registerUser() {
 
 // Function that changes the roles of the input fields and button on the landing page, so that existing users can sign in
 function changeForm() {
-    statusBox.innerHTML = "Please sign into your account";
     registerBtn.style.display = "none";
     loginBtn.innerHTML = "Sign in";
 
@@ -73,7 +74,6 @@ function changeForm() {
             .then((userCredential) => {
                 // Hide registration/Sign-in fields and button and prompt
                 formBox.style.display = 'none';
-                statusBox.style.display = 'none';
                 showPostForm();
                 loadUserPosts();
             })
@@ -101,9 +101,9 @@ function loadUserPosts() {
             // Check if there are any posts in the database for this user
             if (data !== null) {
                 // Apply template to each post, add a DELETE button with the unique post key as value
-                allPosts.innerHTML = Object.keys(data).map(key => postTemplate(data[key]) + `<button value="${key}">Delete</button>`).join('');
+                content.innerHTML = Object.keys(data).map(key => postTemplate(data[key]) + `<button value="${key}">Delete</button>`).join('');
             } else {
-                allPosts.innerHTML = "";
+                content.innerHTML = "You have no posts to show";
             }
         })
 }
@@ -116,24 +116,30 @@ function createPost() {
         let content = document.getElementById('postContent').value;
 
         if (title !== "" && content !== "") {
-            // Get the current date
-            let today = new Date();
-            let date = `Posted on: ${today.getDate()}.${(today.getMonth()+1)}.${today.getFullYear()}`;
-            // POST request to the database
-            fetch(`${baseURI}users/${currentUser.uid}/posts.json`, {
-                method: "POST",
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({
-                    author: currentUser.email,
-                    title: title,
-                    content: content,
-                    date: date
-                })
-            }).then(() => {
+            if (title.length < 10) {
+                alert('Title must be at least 10 characters long');
+            } else if (content.length < 100) {
+                alert('Content must be at least 100 characters long')
+            } else {
+                // Get the current date
+                let today = new Date();
+                let date = `Posted on: ${today.getDate()}.${(today.getMonth()+1)}.${today.getFullYear()}`;
+                // POST request to the database
+                fetch(`${baseURI}users/${currentUser.uid}/posts.json`, {
+                    method: "POST",
+                    headers: {'Content-type': 'application/json'},
+                    body: JSON.stringify({
+                        author: currentUser.email,
+                        title: title,
+                        content: content,
+                        date: date
+                    })
+                }).then(() => {
                     // Clears input fields and makes AJAX call
                     clearFields();
                     loadUserPosts();
                 })
+            }
         } else {
             console.log('Fields need to be filled.');
         }
@@ -164,4 +170,10 @@ function clearFields() {
 
 function showPostForm() {
     postForm.style.display = 'block';
+}
+
+function showRegistrationForm() {
+    content.firstElementChild.style.display = "none";
+    content.style.marginTop = "100px";
+    content.lastElementChild.firstElementChild.style.display = "block";
 }
