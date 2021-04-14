@@ -99,13 +99,16 @@ function createPost() {
         let content = document.getElementById('postContent').value;
 
         if (title !== "" && content !== "") {
+            let today = new Date();
+            let date = `Posted on: ${today.getDate()}.${(today.getMonth()+1)}.${today.getFullYear()}`;
             fetch(`${baseURI}users/${currentUser.uid}/posts.json`, {
                 method: "POST",
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
                     author: currentUser.email,
                     title: title,
-                    content: content
+                    content: content,
+                    date: date
                 })
             }).then(r => {
                 clearFields();
