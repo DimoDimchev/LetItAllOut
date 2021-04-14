@@ -94,6 +94,7 @@ function writeUserData(user) {
 
 // Function that loads all of the user's posts
 function loadUserPosts() {
+    // Make AJAX call to the database, retrieving the current user's posts
     fetch(`${baseURI}users/${auth.currentUser.uid}/posts.json`)
         .then(res => res.json())
         .then(data => {
