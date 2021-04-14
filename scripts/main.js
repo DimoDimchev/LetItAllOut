@@ -84,7 +84,11 @@ function loadPosts(user, base) {
     fetch(`${base}users/${user.uid}/posts.json`)
         .then(res => res.json())
         .then(data => {
-            allPosts.innerHTML = Object.keys(data).map(key => postTemplate(data[key]) + `<button value="${key}">Delete</button>`).join('');
+            if (data !== null) {
+                allPosts.innerHTML = Object.keys(data).map(key => postTemplate(data[key]) + `<button value="${key}">Delete</button>`).join('');
+            } else {
+                allPosts.innerHTML = "";
+            }
         })
 }
 
