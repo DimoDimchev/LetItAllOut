@@ -7,7 +7,7 @@ let email = document.getElementById('email');
 let password = document.getElementById('password');
 
 let statusBox = document.getElementById('status').firstElementChild;
-// let postForm = document.getElementById('postForm');
+let postForm = document.getElementById('postForm');
 let allPosts = document.getElementById('allPosts');
 let postTemplate = Handlebars.compile(document.getElementById('postTemplate').innerHTML);
 
@@ -18,6 +18,7 @@ let postButton = document.getElementById('postButton');
 registerBtn.addEventListener('click', registerUser);
 loginBtn.addEventListener('click', changeForm);
 postButton.addEventListener('click', createPost);
+
 body.addEventListener('click', deletePost);
 
 function registerUser() {
@@ -35,12 +36,13 @@ function registerUser() {
                 email: user.email
             }
             writeUserData(userData);
-            // showPostForm();
-            loadUserPosts(user, baseURI);
+            showPostForm();
         })
+        .then(() => {loadUserPosts();})
         .catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
+            console.log(`${errorCode}:${errorMessage}`);
         });
 }
 
@@ -57,15 +59,15 @@ function changeForm() {
     function loginUser() {
         auth.signInWithEmailAndPassword(userEmail, userPassword)
             .then((userCredential) => {
-                let user = userCredential.user;
-                // showPostForm();
-                formBox.style.display = "none";
+                formBox.style.display = 'none';
                 statusBox.style.display = 'none';
-                loadUserPosts(user, baseURI);
+                showPostForm();
+                loadUserPosts();
             })
             .catch((error) => {
                 let errorCode = error.code;
                 let errorMessage = error.message;
+                console.log(`${errorCode}:${errorMessage}`);
             });
     }
 }
@@ -76,12 +78,8 @@ function writeUserData(user) {
     });
 }
 
-// function showPostForm() {
-//
-// }
-
-function loadUserPosts(user, base) {
-    fetch(`${base}users/${user.uid}/posts.json`)
+function loadUserPosts() {
+    fetch(`${baseURI}users/${auth.currentUser.uid}/posts.json`)
         .then(res => res.json())
         .then(data => {
             if (data !== null) {
@@ -110,10 +108,10 @@ function createPost() {
                     content: content,
                     date: date
                 })
-            }).then(r => {
-                clearFields();
-                loadUserPosts(currentUser, baseURI);
-            })
+            }).then(() => {
+                    clearFields();
+                    loadUserPosts();
+                })
         } else {
             console.log('Fields need to be filled.');
         }
@@ -129,16 +127,16 @@ function deletePost(event) {
             fetch(`${baseURI}users/${currentUser.uid}/posts/${event.target.value}.json`, {
                 method: "DELETE",
                 headers: {'Content-type': 'application/json'}
-            }).then(r => loadUserPosts(currentUser, baseURI));
+            }).then(() => loadUserPosts(currentUser, baseURI));
         }
     }
-}
-
-function loadAllPosts(base) {
-
 }
 
 function clearFields() {
     document.getElementById('postTitle').value = "";
     document.getElementById('postContent').value = "";
+}
+
+function showPostForm() {
+    postForm.style.display = 'block';
 }
