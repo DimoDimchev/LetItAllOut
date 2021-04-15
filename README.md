@@ -1,6 +1,10 @@
 # LetItAllOut
 ### Preface
-This is a simple app built with the purpose of showcasing my JavaScript and Firebase skills. The concept is: *an app where you can write anything and everything, but you are the only one that can see it.* Quite boring, I know.<br><br>
+This is a simple app built with the purpose of showcasing my JavaScript and Firebase skills(more focused on the backend side of things. No fancy designs or animations)
+<br>
+The concept is: *an app where you can write anything and everything, but you are the only one that can see it.* Quite boring, I know
+<br>
+<br>
 **The idea here is not the important thing. What is, is that I managed to become more confident with the way I used both technologies.**
 
 ### Nerdy stuff
