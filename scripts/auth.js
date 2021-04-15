@@ -12,6 +12,9 @@ let loginBtn = document.getElementById('showLogin');
 let registerBtn = document.getElementById('registerBtn');
 let registrationPromptButton = document.getElementById('registrationPrompt');
 
+// Holds the greeting for the user
+let userGreeting = document.getElementById('userGreeting');
+
 registerBtn.addEventListener('click', registerUser);
 loginBtn.addEventListener('click', changeForm);
 registrationPromptButton.addEventListener('click', showRegistrationForm);
@@ -32,6 +35,7 @@ function registerUser() {
                 email: user.email
             }
             writeUserData(userData);
+            userGreeting.innerHTML = `Welcome, ${userEmail}. Please Let It All Out`;
             showPostForm();
         })
         .then(() => {loadUserPosts();})
@@ -48,6 +52,7 @@ function registerUser() {
         .then((userCredential) => {
             // Hide registration/Sign-in fields and button and prompt
             formBox.style.display = 'none';
+            userGreeting.innerHTML = `Welcome, ${userEmail}. Please Let It All Out`;
             showPostForm();
             loadUserPosts();
         })

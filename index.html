@@ -17,10 +17,12 @@
         <label for="postTitle">Title:</label>
         <input type="text" id="postTitle" placeholder="Title">
         <label for="postContent">Content:</label>
-        <input type="text" id="postContent" placeholder="Content">
+        <textarea name="Content" placeholder="Content" id="postContent" cols="30" rows="10" style="resize: none;"></textarea>
         <button type="button" id="postButton">Post</button>
     </form>
 </div>
+
+<div id="userGreeting"></div>
 
 <div>
     <div class="curved">
@@ -56,5 +58,6 @@
 <script src="scripts/firebase.js"></script>
 <script type="module" src="scripts/auth.js"></script>
 <script type="module" src="scripts/postActions.js"></script>
+<script type="module" src="scripts/formActions.js"></script>
 </body>
 </html>

@@ -8,8 +8,8 @@
     background: #7fffd4;
     color: #000000;
     text-align: center;
-    width: 90vw;
-    margin: auto auto;
+    width: 70vw;
+    margin: 0 auto;
 }
 
 .curved h1 {
@@ -59,6 +59,10 @@ input {
     transition: .3s background-color;
 }
 
+textarea {
+    font-family: 'Raleway', sans-serif;
+}
+
 .input:hover {
     background-color: #fafafa;
 }
@@ -74,9 +78,11 @@ input {
 
 #postForm #postTitle {
     display:block;
-    width:400px;
-    height: 30px;
-    margin:auto auto;
+    width:30vw;
+    height: 6vh;
+    margin: 1em 0 0.5em 0;
+    font-size: 15px;
+    font-weight: bold;
     padding-top:10px;
     border:1px solid #111;
     transition: .3s background-color;
@@ -84,9 +90,9 @@ input {
 
 #postForm #postContent {
     display:block;
-    width:400px;
-    height: 200px;
-    margin:auto auto;
+    width:30vw;
+    height: 20vh;
+    margin: 1em 0 1em 0;
     padding:10px;
     position:  center;
     border:1px solid #111;
@@ -99,6 +105,17 @@ input {
 
 #post p {
     padding-top: 20px;
+}
+
+#userGreeting {
+    font-size: x-large;
+    text-align: center;
+    line-height: 35px;
+    color: #FFFFFF;
+    margin: 0.5em auto;
+    width: 60vw;
+    height: auto;
+    background-color: #800080;
 }
 
 body {
