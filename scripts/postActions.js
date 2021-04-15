@@ -1,96 +1,15 @@
 import { auth, baseURI } from "./firebase.js";
-
-let body = document.getElementsByTagName('body')[0];
-
-// Sign-up and Sign-in fields
-let formBox = document.getElementById('registration');
-let email = document.getElementById('email');
-let password = document.getElementById('password');
-
-// Divs that hold content
-let registrationFormHolder = document.getElementById('registrationFormHolder');
-let postFormHolder = document.getElementById('postFormHolder');
-let content = document.getElementById('content');
+import {content} from "./formActions.js";
 
 // The template, which is later applied to every post
 let postTemplate = Handlebars.compile(document.getElementById('postTemplate').innerHTML);
 
-// Form for creating posts
-let postForm = document.getElementById('postForm');
-
-// Buttons
-let loginBtn = document.getElementById('showLogin');
-let registerBtn = document.getElementById('registerBtn');
+let body = document.getElementsByTagName('body')[0];
 let postButton = document.getElementById('postButton');
-let registrationPromptButton = document.getElementById('registrationPrompt');
 
-registerBtn.addEventListener('click', registerUser);
-loginBtn.addEventListener('click', changeForm);
 postButton.addEventListener('click', createPost);
-registrationPromptButton.addEventListener('click', showRegistrationForm);
-
 // Attatching deletePost() function to "Delete" buttons using event bubbling
 body.addEventListener('click', deletePost);
-
-// Registers new users and stores info in the database, loads the user's posts
-function registerUser() {
-    let userEmail = email.value;
-    let userPassword = password.value;
-
-    // Adds the users to the Users panel of the Firebase Console
-    auth.createUserWithEmailAndPassword(userEmail, userPassword)
-        .then((userCredential) => {
-            // Signed in
-            let user = userCredential.user;
-            formBox.style.display = 'none';
-            let userData = {
-                uid: user.uid,
-                email: user.email
-            }
-            writeUserData(userData);
-            showPostForm();
-        })
-        .then(() => {loadUserPosts();})
-        .catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            console.log(`${errorCode}:${errorMessage}`);
-        });
-}
-
-// Function that changes the roles of the input fields and button on the landing page, so that existing users can sign in
-function changeForm() {
-    registerBtn.style.display = "none";
-    loginBtn.innerHTML = "Sign in";
-
-    let userEmail = email.value;
-    let userPassword = password.value;
-
-    loginBtn.addEventListener('click', loginUser);
-
-    // Function that allows existing users to sign-in
-    function loginUser() {
-        auth.signInWithEmailAndPassword(userEmail, userPassword)
-            .then((userCredential) => {
-                // Hide registration/Sign-in fields and button and prompt
-                formBox.style.display = 'none';
-                showPostForm();
-                loadUserPosts();
-            })
-            .catch((error) => {
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                console.log(`${errorCode}:${errorMessage}`);
-            });
-    }
-}
-
-function writeUserData(user) {
-    // Add new users to the database
-    firebase.database().ref('users/' + user.uid).set(user).catch(error => {
-        console.log(error.message)
-    });
-}
 
 // Function that loads all of the user's posts
 function loadUserPosts() {
@@ -168,12 +87,6 @@ function clearFields() {
     document.getElementById('postContent').value = "";
 }
 
-function showPostForm() {
-    postForm.style.display = 'block';
-}
 
-function showRegistrationForm() {
-    content.firstElementChild.style.display = "none";
-    content.style.marginTop = "100px";
-    content.lastElementChild.firstElementChild.style.display = "block";
-}
+
+export {loadUserPosts, deletePost, createPost}

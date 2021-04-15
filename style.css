@@ -33,7 +33,7 @@ button{
     display:inline-block;
     padding: 0.35em 1.2em;
     border: 0.1em solid #800080;
-    margin: 1em 0.5em 2em 0;
+    margin: 0 0.5em 0.5em 0;
     border-radius: 0.12em;
     box-sizing: border-box;
     text-decoration: none;
@@ -94,6 +94,10 @@ input {
 }
 
 #post h2{
+    padding-top: 20px;
+}
+
+#post p {
     padding-top: 20px;
 }
 
