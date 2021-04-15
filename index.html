@@ -12,37 +12,40 @@
 </head>
 <body>
 
-<div id="postFormHolder">
-    <form id="postForm" style="display: none">
-        <label for="postTitle">Title:</label>
-        <input type="text" id="postTitle" placeholder="Title">
-        <label for="postContent">Content:</label>
-        <textarea name="Content" placeholder="Content" id="postContent" cols="30" rows="10" style="resize: none;"></textarea>
-        <button type="button" id="postButton">Post</button>
-    </form>
+<div id="mySidenav" class="sidenav">
+    <a class="closebtn">&times;</a>
+    <div id="postFormHolder">
+        <form id="postForm" style="display: none">
+            <label for="postTitle">Title:</label>
+            <input type="text" id="postTitle" placeholder="Title">
+            <label for="postContent">Content:</label>
+            <textarea name="Content" placeholder="Content" id="postContent" cols="30" rows="10" style="resize: none;"></textarea>
+            <button type="button" id="postButton">Post</button>
+        </form>
+    </div>
 </div>
 
 <div id="userGreeting"></div>
 
-<div>
-    <div class="curved">
-        <div id="content">
-            <div id="landingPageStuff" style="display: block">
-                <h1>Welcome to LetItAllOut</h1>
-                <p>Ever had a bad day at work and wanted to tell someone how lazy your coworkers are? Was there a secret that that you wanted to share with someone very badly, but you couldn't trust anyone? The best person to keep your secrets is, well, YOU. </p>
-                <button id="registrationPrompt">Try it now!</button>
-            </div>
+<span style="font-size:30px;cursor:pointer" class="openbtn">&#9776;</span>
 
-            <div id="registrationFormHolder">
-                <form id="registration" style="display:none;">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" placeholder="Email">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Password">
-                    <button type="button" id="registerBtn">Register</button>
-                    <button type="button" id="showLogin">Already have an account?</button>
-                </form>
-            </div>
+<div class="curved">
+    <div id="content">
+        <div id="landingPageStuff" style="display: block">
+            <h1>Welcome to LetItAllOut</h1>
+            <p>Ever had a bad day at work and wanted to tell someone how lazy your coworkers are? Was there a secret that that you wanted to share with someone very badly, but you couldn't trust anyone? The best person to keep your secrets is, well, YOU. </p>
+            <button id="registrationPrompt">Try it now!</button>
+        </div>
+
+        <div id="registrationFormHolder">
+            <form id="registration" style="display:none;">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Email">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password">
+                <button type="button" id="registerBtn">Register</button>
+                <button type="button" id="showLogin">Already have an account?</button>
+            </form>
         </div>
     </div>
 </div>

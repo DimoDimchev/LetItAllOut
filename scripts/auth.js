@@ -1,6 +1,6 @@
 import { auth } from "./firebase.js";
 import {loadUserPosts} from "./postActions.js";
-import {showPostForm, showRegistrationForm, changeForm} from "./formActions.js";
+import {showPostForm, showRegistrationForm, changeForm, openSide} from "./formActions.js";
 
 // Sign-up and Sign-in fields
 let formBox = document.getElementById('registration');
@@ -36,6 +36,7 @@ function registerUser() {
             }
             writeUserData(userData);
             userGreeting.innerHTML = `Welcome, ${userEmail}. Please Let It All Out`;
+            openSide.style.display = "block";
             showPostForm();
         })
         .then(() => {loadUserPosts();})
@@ -53,6 +54,7 @@ function registerUser() {
             // Hide registration/Sign-in fields and button and prompt
             formBox.style.display = 'none';
             userGreeting.innerHTML = `Welcome, ${userEmail}. Please Let It All Out`;
+            openSide.style.display = "block";
             showPostForm();
             loadUserPosts();
         })

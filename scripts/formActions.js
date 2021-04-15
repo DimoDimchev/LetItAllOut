@@ -6,6 +6,12 @@ let content = document.getElementById('content');
 // Form for creating posts
 let postForm = document.getElementById('postForm');
 
+let openSide = document.getElementsByClassName('openbtn')[0];
+let closeSide = document.getElementsByClassName('closebtn')[0];
+
+openSide.addEventListener('click', openNav);
+closeSide.addEventListener('click', closeNav);
+
 function showPostForm() {
     postForm.style.display = 'block';
 }
@@ -27,4 +33,12 @@ function changeForm() {
     loginBtn.addEventListener('click', loginUser(userEmail, userPassword));
 }
 
-export {showPostForm, showRegistrationForm, changeForm, content}
+function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
+export {showPostForm, showRegistrationForm, changeForm, openSide, content}
