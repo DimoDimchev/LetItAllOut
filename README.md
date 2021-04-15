@@ -5,6 +5,7 @@ This is a simple app built with the purpose of showcasing my JavaScript and Fire
 
 ### Nerdy stuff
 I wanted to implement as many features as I could, so my web app contains the following:
+- Responsive design: Although with not the best implementation of responsive design, the app will look great on all screens.
 - Authentication(Registration and Sign-in): Users are stored in Firebase Database
 - CRUD: Users can create and delete their posts
 - AJAX: The app uses AJAX calls to the database to update the content each user sees. **No reloading**
