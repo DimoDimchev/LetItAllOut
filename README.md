@@ -2,6 +2,7 @@
 ### Preface
 This is a simple app built with the purpose of showcasing my JavaScript and Firebase skills(more focused on the backend side of things. No fancy designs or animations)
 <br>
+<br>
 The concept is: *an app where you can write anything and everything, but you are the only one that can see it.* Quite boring, I know
 <br>
 <br>
