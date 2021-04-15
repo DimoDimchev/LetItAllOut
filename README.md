@@ -5,10 +5,10 @@ This is a simple app built with the purpose of showcasing my JavaScript and Fire
 
 ### Nerdy stuff
 I wanted to implement as many features as I could, so my web app contains the following:
-- Responsive design: Although with not the best implementation of responsive design, the app will look great on all screens.
-- Authentication(Registration and Sign-in): Users are stored in Firebase Database
-- CRUD: Users can create and delete their posts
-- AJAX: The app uses AJAX calls to the database to update the content each user sees. **No reloading**
+- **Responsive design**: Although with not the best implementation of responsive design, the app will look great on all screens.
+- **Authentication(Registration and Sign-in)**: Users are stored in Firebase Database
+- **CRUD**: Users can create and delete their posts
+- **AJAX**: The app uses AJAX calls to the database to update the content each user sees. **No reloading**
 
 Things left to be wanted:
 - There aren't any animations present, as I don't want to become a front-end developer and don't have those skills.
@@ -16,4 +16,4 @@ Things left to be wanted:
 - Routing needs to be implemented.
 
 ### Where can you see the app in action?
-The app is available for use on (insert link here)
+The app is available for use on GitHub Pages:(insert link here)
