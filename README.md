@@ -15,4 +15,4 @@ Things left to be wanted:
 - Routing needs to be implemented.
 
 ### Where can you see the app in action?
-The app is available for use on GitHub Pages:(insert link here)
+The app is available for use on GitHub Pages: https://dimodimchev.github.io/LetItAllOut/
