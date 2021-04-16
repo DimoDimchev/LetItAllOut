@@ -72,12 +72,12 @@ textarea {
 }
 
 #postForm {
-    margin-bottom: 200px;
+    margin: 5em auto 5em auto;
 }
 
 #postForm #postTitle {
     display:block;
-    width:30vw;
+    width:40vw;
     height: 6vh;
     margin: 1em auto 0.5em auto;
     font-size: 15px;
@@ -89,7 +89,7 @@ textarea {
 
 #postForm #postContent {
     display:block;
-    width:30vw;
+    width:50vw;
     height: 20vh;
     margin: 1em auto 1em auto;
     padding:10px;

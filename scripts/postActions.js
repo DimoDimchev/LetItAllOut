@@ -21,6 +21,7 @@ function loadUserPosts() {
             if (data !== null) {
                 // Apply template to each post, add a DELETE button with the unique post key as value
                 let allPosts = Object.keys(data).map(key => postTemplate(data[key]) + `<button value="${key}">Delete</button>`).join('');
+
                 content.innerHTML = allPosts;
             } else {
                 content.innerHTML = "You have no posts to show";
