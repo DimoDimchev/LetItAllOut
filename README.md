@@ -1,5 +1,5 @@
 # LetItAllOut
-<img src="https://github.com/DimoDimchev/LetItAllOut/blob/main/Screenshot%202021-04-16%20at%209.27.57%20AM.png" href="https://dimodimchev.github.io/LetItAllOut/">
+<a href="https://dimodimchev.github.io/LetItAllOut/"><img src="https://github.com/DimoDimchev/LetItAllOut/blob/main/Screenshot%202021-04-16%20at%209.27.57%20AM.png"></a>
 ### Preface
 This is a simple app built with the purpose of showcasing my JavaScript and Firebase skills(more focused on the backend side of things. No fancy designs or animations)
 <br>
