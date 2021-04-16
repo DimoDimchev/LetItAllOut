@@ -41,4 +41,4 @@ function openNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 
-export {showPostForm, showRegistrationForm, changeForm, openSide, content}
+export {showPostForm, showRegistrationForm, changeForm, openSide, closeNav, content}

@@ -1,5 +1,5 @@
 import { auth, baseURI } from "./firebase.js";
-import {content} from "./formActions.js";
+import {content, closeNav} from "./formActions.js";
 
 // The template, which is later applied to every post
 let postTemplate = Handlebars.compile(document.getElementById('postTemplate').innerHTML);
@@ -56,6 +56,7 @@ function createPost() {
                 }).then(() => {
                     // Clears input fields and makes AJAX call
                     clearFields();
+                    closeNav();
                     loadUserPosts();
                 })
             }
