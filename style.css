@@ -121,6 +121,11 @@ textarea {
     background-color: #800080;
 }
 
+article {
+    width: 45vw;
+    margin: auto auto;
+}
+
 .sidenav {
     height: 100%;
     width: 0;
