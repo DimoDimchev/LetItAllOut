@@ -37,8 +37,8 @@ function createPost() {
         if (title !== "" && content !== "") {
             if (title.length < 10) {
                 alert('Title must be at least 10 characters long');
-            } else if (content.length < 100) {
-                alert('Content must be at least 100 characters long')
+            } else if (content.length < 50) {
+                alert('Content must be at least 50 characters long')
             } else {
                 // Get the current date
                 let today = new Date();
