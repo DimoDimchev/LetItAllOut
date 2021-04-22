@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Blog</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a class="closebtn">&times;</a>
+    <div id="postFormHolder">
+        <form id="postForm" style="display: none">
+            <label for="postTitle">Title:</label>
+            <input type="text" id="postTitle" placeholder="Title">
+            <label for="postContent">Content:</label>
+            <textarea name="Content" placeholder="Content" id="postContent" cols="30" rows="10" style="resize: none;"></textarea>
+            <button type="button" id="postButton">Post</button>
+        </form>
+    </div>
+</div>
+
+<div id="userGreeting"></div>
+
+<span style="font-size:30px;cursor:pointer" class="openbtn">&#9776;</span>
+
+<div class="curved">
+    <div id="content">
+        <div id="landingPageStuff" style="display: block">
+            <h1>Welcome to LetItAllOut</h1>
+            <p>Ever had a bad day at work and wanted to tell someone how lazy your coworkers are? Was there a secret that that you wanted to share with someone very badly, but you couldn't trust anyone? The best person to keep your secrets is, well, YOU. </p>
+            <button id="registrationPrompt">Try it now!</button>
+        </div>
+
+        <div id="registrationFormHolder">
+            <form id="registration" style="display:none;">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Email">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password">
+                <button type="button" id="registerBtn">Register</button>
+                <button type="button" id="showLogin">Already have an account?</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-handlebars-template" id="postTemplate">
+        <div id="post">
+            <h2>{{title}}</h2>
+            <article>{{content}}</article>
+            <p>{{date}}</p>
+        </div>
+</script>
+
+<script src="../scripts/firebase.js"></script>
+<script type="module" src="./scripts/auth.js"></script>
+<script type="module" src="./scripts/postActions.js"></script>
+<script type="module" src="./scripts/formActions.js"></script>
+</body>
+</html>
